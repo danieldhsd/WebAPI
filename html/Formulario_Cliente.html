@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Cadastro de Evento</title>
+    <title>Cadastro de Clientes</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -45,11 +45,11 @@
         <div class="row">
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-3">Dados do Cliente</h4>
-                <form class="needs-validation" novalidate>
+                <form class="needs-validation" autocomplete="on" action="" method="" novalidate>
                     <div class="row">
                         <div class="col-md-10 mb-3">
-                            <label for="NomeEvento">Nome</label>
-                            <input type="text" class="form-control" name="inNome" id="Nome" placeholder="" value="" required>
+                            <label for="nome">Nome</label>
+                            <input type="text" class="form-control" name="inNome" id="nome" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Valid name is required.
                             </div>
@@ -59,7 +59,7 @@
                     <div class="row">
                         <div class="col-md-10 mb-3">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" name="inEmail" id="Nome" placeholder="" value="" required>
+                            <input type="email" class="form-control" name="inEmail" id="email" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Valid name is required.
                             </div>
@@ -79,7 +79,7 @@
 
                     <div class="mb-3">
                         <label for="complemento">Complemento</label>
-                        <input type="text" class="form-control" name="inComplemento" id="complemento" placeholder="Ex: Centro">
+                        <input type="text" class="form-control" name="inComplemento" id="complemento">
                     </div>
 
                     <div class="mb-3">
@@ -88,18 +88,33 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="pais">País</label>
-                        <input type="text" class="form-control" id="pais" placeholder="Ex: Brasil">
+                        <label for="estado">Estado</label>
+                        <input type="text" class="form-control" name="inEstado" id="estado" placeholder="Ex: Bahia">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cep">CEP</label>
+                        <input type="text" class="form-control" name="inCep" id="cep">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="rg">RG</label>
+                        <input type="text" class="form-control" name="inRg" id="rg">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cpf">CPF</label>
+                        <input type="text" class="form-control" name="inCpf" id="cpf">
                     </div>
 
                     <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Cadastrar Evento</button>
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Cadastrar Cliente</button>
                 </form>
             </div>
         </div>
 
         <footer class="my-5 pt-5 text-muted text-center text-small">
-            <p class="mb-1">&copy; 2017-2019 IRecommend</p>
+            <p class="mb-1">&copy; 2017-2019 Cadastro de Clientes</p>
             <ul class="list-inline">
                 <li class="list-inline-item"><a href="#">Privacidade</a></li>
                 <li class="list-inline-item"><a href="#">Termos de Uso</a></li>

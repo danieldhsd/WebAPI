@@ -1,7 +1,5 @@
 <?php
 class Cliente {
-	private $tabela = 'cliente';
-	private $conexao;
 
 	private $id;
 	private $nome;

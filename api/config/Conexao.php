@@ -5,6 +5,7 @@ class Conexao{
 	private $usuario = "root";
 	private $senha = "password";
 	public $conn;
+	
 	public function getConnection(){
 		$this->conn = null;
 		try{

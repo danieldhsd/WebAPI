@@ -30,5 +30,7 @@
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conexao);
     }
+    echo "<br></br>";
+    echo "<a href='../../view/html/Formulario_Cliente.html' class='btn btn-primary' role='button'>Cadastra novo Cliente</a>";
     mysqli_close($conexao);
 ?>

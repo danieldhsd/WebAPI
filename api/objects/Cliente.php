@@ -52,39 +52,38 @@
         public function setId($id){
             $this->id = $id;
         }
-        public function setId($nome){
+        public function setNome($nome){
             $this->nome = $nome;
         }
-        public function setId($telefone){
+        public function setTelefone($telefone){
             $this->telefone = $telefone;
         }
-        public function setId($email){
+        public function setEmail($email){
             $this->email = $email;
         }
-        public function setId($rua){
+        public function setRua($rua){
             $this->rua = $rua;
         }
-        public function setId($numero){
+        public function setNumero($numero){
             $this->numero = $numero;
         }
-        public function setId($complemento){
+        public function setComplemento($complemento){
             $this->complemento = $complemento;
         }
-        public function setId($cidade){
+        public function setCidade($cidade){
             $this->cidade = $cidade;
         }
-        public function setId($estado){
+        public function setEstado($estado){
             $this->estado = $estado;
         }
-        public function setId($rg){
+        public function setRg($rg){
             $this->rg = $rg;
         }
-        public function setId($cpf){
+        public function setCpf($cpf){
             $this->cpf = $cpf;
         }
-        public function setId($cep){
+        public function setCep($cep){
             $this->cep = $cep;
         }
     }
-
 ?>

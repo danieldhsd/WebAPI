@@ -1,9 +1,9 @@
 <?php
 class Conexao{
 	private $servidor = "localhost";
-	private $banco = "clientes";
+	private $banco = "Clientes";
 	private $usuario = "root";
-	private $senha = "password";
+	private $senha = "root";
 	public $conn;
 	
 	public function getConnection(){

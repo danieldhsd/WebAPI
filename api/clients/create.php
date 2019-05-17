@@ -1,44 +1,34 @@
 <?php
     include_once __DIR__ . '/../config/Conexao.php';
-    include_once __DIR__ . '/objects/Cliente.php';
+    include_once __DIR__ . '/../objects/Cliente.php';
 
     $tabela = 'Clientes';
     $bd = new Conexao();
     $conexao = $bd->getConnection();
     $cliente = new Cliente();
 
-    $cliente->setNome($_GET['inNome']);
-    $cliente->setTelefone($_GET['inTelefone']);
-    $cliente->setEmail($_GET["inEmail"]);
-    $cliente->setRua($_GET["inRua"]);
-    $cliente->setNumero($_GET["inNumero"]);
-    $cliente->setComplemento($_GET["inComplemento"]);
-    $cliente->setCidade($_GET["inCidade"]);
-    $cliente->setEstado($_GET["inEstado"]);
-    $cliente->setRg($_GET["inRg"]);
-    $cliente->setCpf($_GET["inCpf"]);
-    $cliente->setCep($_GET["inCep"]);
+    $cliente->setNome($_POST["inNome"]);
+    $cliente->setTelefone($_POST["inTelefone"]);
+    $cliente->setEmail($_POST["inEmail"]);
+    $cliente->setRua($_POST["inRua"]);
+    $cliente->setNumero($_POST["inNumero"]);
+    $cliente->setComplemento($_POST["inComplemento"]);
+    $cliente->setCidade($_POST["inCidade"]);
+    $cliente->setEstado($_POST["inEstado"]);
+    $cliente->setRg($_POST["inRg"]);
+    $cliente->setCpf($_POST["inCpf"]);
+    $cliente->setCep($_POST["inCep"]);
 
-    $sql = "INSERT INTO {$tabela} ";  
-    . " (NOME, EMAIL, TELEFONE, RUA, NUMERO, COMPLEMENTO, CIDADE, ESTADO, CEP, RG, CPF) "
-    . " (?,?,?,?,?,?,?,?,?,?,?) ";
+    $sql = "INSERT INTO {$tabela} "  
+    . " (nome, email, telefone, rua, numero, complemento, cidade, estado, cep, rg, cpf) "
+    . " values ('{$cliente->getNome()}', '{$cliente->getEmail()}', '{$cliente->getTelefone()}',
+    '{$cliente->getRua()}', {$cliente->getNumero()}, '{$cliente->getComplemento()}', '{$cliente->getCidade()}', 
+    '{$cliente->getEstado()}', '{$cliente->getCep()}', '{$cliente->getRg()}', '{$cliente->getCpf()}') ";
     
-    $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('ssssissssss', $cliente->getNome(), $cliente->getTelefone(), $cliente->getEmail(),
-    $cliente->getRua(), $cliente->getNumero(), $cliente->getComplemento(), $cliente->getCidade(), $cliente->getEstado(),
-    $cliente->getRg(), $cliente->getCpf(), $cliente->getCep());
-
-    if($stmt->execute() === TRUE){
-        return TRUE;
+    if (mysqli_query($conexao, $sql)) {
+        echo "Novo cliente cadastrado!!";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conexao);
     }
-    else{
-        return FALSE;
-    }
-
-
-
-
-
-
-
+    mysqli_close($conexao);
 ?>

@@ -28,11 +28,11 @@
         <div class="row">
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-3">Dados do Cliente</h4>
-                <form class="needs-validation" autocomplete="on" action="" method="" novalidate>
+                <form class="needs-validation" action="../../api/clients/create.php" method="POST">
                     <div class="row">
                         <div class="col-md-10 mb-3">
                             <label for="nome">Nome</label>
-                            <input type="text" class="form-control" name="inNome" id="nome" placeholder="" value="" required>
+                            <input type="text" class="form-control" name="inNome" id="inNome" placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Valid name is required.
                             </div>
@@ -47,6 +47,11 @@
                                 Valid name is required.
                             </div>
                         </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="telefone">Telefone</label>
+                        <input type="text" class="form-control" name="inTelefone" id="telefone">
                     </div>
 
                     <div class="mb-3">
@@ -82,7 +87,7 @@
 
                     <div class="mb-3">
                         <label for="cidade">Cidade</label>
-                        <input type="text" class="form-control" id="cidade" placeholder="Ex: Belo Horizonte">
+                        <input type="text" class="form-control" name="inCidade" id="cidade" placeholder="Ex: Belo Horizonte">
                     </div>
 
                     <div class="mb-3">

@@ -6,14 +6,11 @@
     $bd = new Conexao();
     $conexao = $bd->getConnection();
     $cliente = new Cliente();
-    $id = $_GET["inId"];
-
 
     $sql = "SELECT NOME, TELEFONE, EMAIL, RUA, NUMERO, COMPLEMENTO, CIDADE, ESTADO, RG, CPF, CEP "
-    . " FROM {$tabela} WHERE ID = ?";
+    . " FROM {$tabela}";
 
     $stmt = $conexao->prepare($sql);
-    $stmt->bind_param("i", $id);
     $stmt->execute();
     
     if($stmt->num_rows > 0){

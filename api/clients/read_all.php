@@ -28,12 +28,10 @@
                     "numero" => $numero,
                     "complemento" => $complemento,
                     "cidade" => $cidade,
-                    "estado" => $estado;
+                    "estado" => $estado,
                     "rg" => $rg,
                     "cpf" => $cpf,
-                    "cep" => $cep;
-
-					
+                    "cep" => $cep,
 			);
 			array_push($results["registros"], $cliEncontrado);
 		}
@@ -41,9 +39,6 @@
 	} else {
 		echo json_encode(
 				array("mensagem" => "Nenhum Cliente Encontrado!")
-			);
+		);
     }
-
-
-
 ?>

@@ -46,7 +46,4 @@
 				array("mensagem" => "Nenhum Cliente Encontrado!")
 			);
     }
-
-
-
 ?>

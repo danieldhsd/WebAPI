@@ -11,27 +11,28 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
 <body>
-
     <div class="container">
-    <h2>Clientes Cadastrados</h2>
-    <table class="table table-striped table-bordered table-hover">
-        <thead>
-        <tr>
-            <th class="table table-info">Nome</th>
-            <th class="table table-info">Email</th>
-            <th class="table table-info">Telefone</th>
-            <th class="table table-danger">Deletar</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>John</td>
-            <td>john@example.com</td>
-            <td>98827156</td>
-            <td><a href="{% url 'person_delete' person.id %}"><i class="fas fa-trash"></i></a></td>
-        </tr>
-        </tbody>
-    </table>
+        <div class="row">
+            <h2>Clientes Cadastrados</h2>
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th class="table table-info">Nome</th>
+                    <th class="table table-info">Email</th>
+                    <th class="table table-info">Telefone</th>
+                    <th class="table table-danger">Deletar</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><a href="{% url 'person_delete' person.id %}"><i class="fas fa-trash"></i></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </body>

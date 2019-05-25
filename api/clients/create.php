@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="../../view/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../view/css/cover.css">
+
+<div class="container text-center">
 <?php
     include_once __DIR__ . '/../config/Conexao.php';
     include_once __DIR__ . '/../objects/Cliente.php';
@@ -26,11 +30,14 @@
     '{$cliente->getEstado()}', '{$cliente->getCep()}', '{$cliente->getRg()}', '{$cliente->getCpf()}') ";
     
     if (mysqli_query($conexao, $sql)) {
-        echo "Novo cliente cadastrado!!";
+        echo "<h2>Novo cliente cadastrado!!</h2>";
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conexao);
     }
     echo "<br></br>";
-    echo "<a href='../../view/html/Formulario_Cliente.html' class='btn btn-primary' role='button'>Cadastra novo Cliente</a>";
+    echo "<a href='../../view/html/Formulario_Cliente.html' class='btn btn-primary' role='button'>Cadastrar novo Cliente</a>";
+    echo "<br></br>";
+    echo "<a href='../../view/html/tabela_clientes.php' class='btn btn-primary' role='button'>Ver Clientes Cadastrados</a>";
     mysqli_close($conexao);
 ?>
+</div>

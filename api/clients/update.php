@@ -1,41 +1,44 @@
+<link rel="stylesheet" href="../../view/css/bootstrap.min.css">
+<link rel="stylesheet" href="../../view/css/cover.css">
+
+<div class="container text-center">
 <?php
     include_once __DIR__ . '/../config/Conexao.php';
-    include_once __DIR__ . '/objects/Cliente.php';
+    include_once __DIR__ . '/../objects/Cliente.php';
 
     $tabela = 'Clientes';
     $bd = new Conexao();
     $conexao = $bd->getConnection();
     $cliente = new Cliente();
 
-    $cliente->setId($_GET['inId']);
-    $cliente->setNome($_GET['inNome']);
-    $cliente->setTelefone($_GET['inTelefone']);
-    $cliente->setEmail($_GET["inEmail"]);
-    $cliente->setRua($_GET["inRua"]);
-    $cliente->setNumero($_GET["inNumero"]);
-    $cliente->setComplemento($_GET["inComplemento"]);
-    $cliente->setCidade($_GET["inCidade"]);
-    $cliente->setEstado($_GET["inEstado"]);
-    $cliente->setRg($_GET["inRg"]);
-    $cliente->setCpf($_GET["inCpf"]);
-    $cliente->setCep($_GET["inCep"]);
+    $cliente->setId($_POST["inId"]);
+    $cliente->setNome($_POST['inNome']);
+    $cliente->setTelefone($_POST['inTelefone']);
+    $cliente->setEmail($_POST["inEmail"]);
+    $cliente->setRua($_POST["inRua"]);
+    $cliente->setNumero($_POST["inNumero"]);
+    $cliente->setComplemento($_POST["inComplemento"]);
+    $cliente->setCidade($_POST["inCidade"]);
+    $cliente->setEstado($_POST["inEstado"]);
+    $cliente->setRg($_POST["inRg"]);
+    $cliente->setCpf($_POST["inCpf"]);
+    $cliente->setCep($_POST["inCep"]);
 
     $sql = "UPDATE {$tabela} "
-    . " SET NOME = ?, TELEFONE = ?, EMAIL = ?, RUA = ?, NUMERO = ?, COMPLEMENTO = ?, CIDADE = ?, ESTADO = ?, RG = ?, CPF = ?, CEP = ? "
-    . " WHERE ID = ?"; 
-    
-    $stmt = $conexao->prepare($sql);
-    $stmt->bind_param('ssssissssssi', $cliente->getNome(), $cliente->getTelefone(), $cliente->getEmail(),
-    $cliente->getRua(), $cliente->getNumero(), $cliente->getComplemento(), $cliente->getCidade(), $cliente->getEstado(),
-    $cliente->getRg(), $cliente->getCpf(), $cliente->getCep(), $cliente->getId());
+    . " SET nome = '{$cliente->getNome()}', telefone = '{$cliente->getTelefone()}', email = '{$cliente->getEmail()}', 
+        rua = '{$cliente->getRua()}', numero = {$cliente->getNumero()}, complemento = '{$cliente->getComplemento()}', 
+        cidade = '{$cliente->getCidade()}', estado = '{$cliente->getEstado()}', rg = '{$cliente->getRg()}', 
+        cpf = '{$cliente->getCpf()}', cep = '{$cliente->getCep()}' WHERE id = {$cliente->getId()}"; 
 
-    if($stmt->execute() === TRUE){
-        return TRUE;
+    if (mysqli_query($conexao, $sql)) {
+        echo "<h2>Dados do Cliente atualizados!</h2>";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conexao);
     }
-    else{
-        return FALSE;
-    }
-
-
-
+    echo "<br></br>";
+    echo "<a href='../../view/html/Formulario_Cliente.html' class='btn btn-primary' role='button'>Cadastrar novo Cliente</a>";
+    echo "<br></br>";
+    echo "<a href='../../view/html/tabela_clientes.php' class='btn btn-primary' role='button'>Ver Clientes Cadastrados</a>";
+    mysqli_close($conexao);
 ?>
+</div>

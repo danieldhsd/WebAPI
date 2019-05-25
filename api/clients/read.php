@@ -1,6 +1,6 @@
 <?php 
     include_once __DIR__ . '/../config/Conexao.php';
-    include_once __DIR__ . '/objects/Cliente.php';
+    include_once __DIR__ . '/../objects/Cliente.php';
 
     $tabela = 'Clientes';
     $bd = new Conexao();

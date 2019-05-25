@@ -1,6 +1,6 @@
 <?php 
     include_once __DIR__ . '/../config/Conexao.php';
-    include_once __DIR__ . '/objects/Cliente.php';
+    include_once __DIR__ . '/../objects/Cliente.php';
 
     function read_all(){
         $tabela = 'Clientes';
@@ -8,12 +8,11 @@
         $conexao = $bd->getConnection();
         $cliente = new Cliente();
 
-        $sql = "SELECT NOME, TELEFONE, EMAIL, RUA, NUMERO, COMPLEMENTO, CIDADE, ESTADO, RG, CPF, CEP "
-        . " FROM {$tabela}";
+        $sql = "SELECT id, nome, telefone, email, rua, numero, complemento, cidade, estado, rg, cpf, cep"
+        . " from {$tabela}";
 
-        $stmt = $conexao->prepare($sql);
-        $stmt->execute();
-        
+        $stmt = mysqli_query($conexao, $sql);
+
         if($stmt->num_rows > 0){
             $results = array();
             $results['registros'] = array();

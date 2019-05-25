@@ -1,3 +1,39 @@
+<?php
+    include_once __DIR__ . '/../../api/objects/Cliente.php';
+    include_once __DIR__ . '/../../api/config/Conexao.php';
+
+    $tabela = 'Clientes';
+    $bd = new Conexao();
+    $conexao = $bd->getConnection();
+    $cliente = new Cliente();
+
+    $id = $_GET['id'];
+
+    $sql = "SELECT id, nome, telefone, email, rua, numero, complemento, cidade, estado, rg, cpf, cep"
+        . " from {$tabela} where id = {$id}";
+    
+    $stmt = mysqli_query($conexao, $sql);
+
+    if($stmt->num_rows > 0){
+        while($linha = mysqli_fetch_array($stmt)){
+            extract($linha);
+            $cliEncontrado = array(
+                    "id" => $id,
+                    "nome" =>$nome,
+                    "email" =>$email,	
+                    "telefone" =>$telefone,
+                    "rua" => $rua,
+                    "numero" => $numero,
+                    "complemento" => $complemento,
+                    "cidade" => $cidade,
+                    "estado" => $estado,
+                    "rg" => $rg,
+                    "cpf" => $cpf,
+                    "cep" => $cep,
+            );
+        }
+    }
+?>
 <!doctype html>
 <html lang="en">
 
@@ -6,7 +42,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Cadastro de Clientes</title>
+    <title>Atualizar dados do Clientes</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -18,29 +54,28 @@
 <body class="">
     <div class="container">
         <div class="py-5 text-center">
-            <h2>Cadastro de Clientes</h2>
-            <p class="lead">Abaixo você pode fazer o cadastro do seu Cliente.
-                Não deixe de preencher nenhuma informação.</p>
+            <h2>Atualizar dados do Clientes</h2>
         </div>
 
         <div class="row">
             <div class="col-md-8 order-md-1">
-                <h4 class="mb-3">Dados do Cliente</h4>
-                <form class="needs-validation" action="../../api/clients/create.php" method="POST">
+               <h4 class="mb-3">Dados do Cliente</h4>
+                                
+                <form class='needs-validation' action='../../api/clients/update.php' method='POST'>
                     <div class="row">
                         <div class="col-md-10 mb-3">
                             <label for="nome">Nome</label>
-                            <input type="text" class="form-control" name="inNome" id="inNome" placeholder="" value="" required>
+                            <input type="text" class="form-control" name="inNome" id="inNome" value="<?php echo $cliEncontrado['nome']; ?>" required>
                             <div class="invalid-feedback">
                                 Valid name is required.
                             </div>
                         </div>
                     </div>
-
+                    <input type="hidden" name="inId" value="<?php echo $cliEncontrado['id']; ?>">
                     <div class="row">
                         <div class="col-md-10 mb-3">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" name="inEmail" id="email" placeholder="" value="" required>
+                            <input type="email" class="form-control" name="inEmail" id="email" value="<?php echo $cliEncontrado['email']; ?>" required>
                             <div class="invalid-feedback">
                                 Valid name is required.
                             </div>
@@ -49,52 +84,52 @@
 
                     <div class="mb-3">
                         <label for="telefone">Telefone</label>
-                        <input type="text" data-js="telefone" class="form-control" name="inTelefone" id="telefone">
+                        <input type="text" data-js="telefone" class="form-control" name="inTelefone" value="<?php echo $cliEncontrado['telefone']; ?>"  id="telefone">
                     </div>
 
                     <div class="mb-3">
                         <label for="cep">CEP</label>
-                        <input type="text" data-js="cep" class="form-control" name="inCep" id="cep">
+                        <input type="text" data-js="cep" class="form-control" value="<?php echo $cliEncontrado['cep']; ?>" name="inCep" id="cep">
                     </div>
 
                     <div class="mb-3">
                         <label for="rg">RG</label>
-                        <input type="text" data-js="rg" class="form-control" name="inRg" id="rg">
+                        <input type="text" data-js="rg" class="form-control" value="<?php echo $cliEncontrado['rg']; ?>" name="inRg" id="rg">
                     </div>
 
                     <div class="mb-3">
                         <label for="cpf">CPF</label>
-                        <input type="text" data-js="cpf" class="form-control" name="inCpf" id="cpf">
+                        <input type="text" data-js="cpf" class="form-control" name="inCpf" value="<?php echo $cliEncontrado['cpf']; ?>" id="cpf">
                     </div>
 
                     <h5 class="mb-3">Endereço</h5>
                     <div class="mb-3">
                         <label for="rua">Rua</label>
-                        <input type="text" class="form-control" name="inRua" id="rua" placeholder="Ex: Rua Da Bahia">
+                        <input type="text" class="form-control" name="inRua" id="rua" value="<?php echo $cliEncontrado['rua']; ?>">
                     </div>
 
                     <div class="col-md-3 mb-3">
                         <label for="numeroRua">Número</label>
-                        <input type="number" class="form-control" name="inNumero" id="numeroRua" placeholder="Ex: 1234">
+                        <input type="number" class="form-control" name="inNumero" id="numeroRua" value="<?php echo $cliEncontrado['numero']; ?>">
                     </div>
 
                     <div class="mb-3">
                         <label for="complemento">Complemento</label>
-                        <input type="text" class="form-control" name="inComplemento" id="complemento">
+                        <input type="text" class="form-control" name="inComplemento" value="<?php echo $cliEncontrado['complemento']; ?>" id="complemento">
                     </div>
 
                     <div class="mb-3">
                         <label for="cidade">Cidade</label>
-                        <input type="text" class="form-control" name="inCidade" id="cidade" placeholder="Ex: Belo Horizonte">
+                        <input type="text" class="form-control" name="inCidade" id="cidade" value="<?php echo $cliEncontrado['cidade']; ?>">
                     </div>
 
                     <div class="mb-3">
                         <label for="estado">Estado</label>
-                        <input type="text" class="form-control" name="inEstado" id="estado" placeholder="Ex: Minas Gerais">
+                        <input type="text" class="form-control" name="inEstado" id="estado" value="<?php echo $cliEncontrado['estado']; ?>">
                     </div>
 
                     <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Cadastrar Cliente</button>
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Atualizar Cliente</button>
                 </form>
             </div>
         </div>

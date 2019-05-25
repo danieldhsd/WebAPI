@@ -1,0 +1,221 @@
+swagger: "2.0"
+info:
+  description: "Esta página faz o cadastro de clientes no banco de dados."
+  version: "1.0.0"
+  title: "Cadastro de Clientes"
+  termsOfService: "http://localhost/WebAPI/"
+  contact:
+    email: "danieldhsd@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost"
+basePath: "/WebAPI/"
+tags:
+- name: "Clientes"
+  description: "Cadastre seus clientes"
+  externalDocs:
+    description: "Saiba mais"
+    url: "http://localhost/WebAPI/"
+- name: "Clientes"
+  description: "Acesso a cadastro de clientes."
+schemes:
+- "https"
+- "http"
+paths:
+  /WebAPI/api/clients/create:
+    post:
+      tags:
+      - "Clientes"
+      summary: "Adicione um novo cliente ao banco"
+      description: ""
+      operationId: "addCliente"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Cliente que vai ser adicionado ao banco"
+        required: true
+        schema:
+          $ref: "#/definitions/Create"
+      responses:
+        200:
+          description: "OK"
+        201:
+          description: "Criação OK"
+        405:
+          description: "Invalid input"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+  /WebAPI/api/clients/read/{id}:
+    get:
+      tags:
+      - "Clientes"
+      summary: "Buscar cliente no banco pelo id"
+      description: ""
+      operationId: "readCliente"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Lista de todos os clientes do banco"
+        required: true
+        schema:
+          $ref: "#/definitions/Id"
+      responses:
+        200:
+          description: "Ok"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+  /WebAPI/api/clients/read_all:
+    get:
+      tags:
+      - "Clientes"
+      summary: "Buscar todos os clientes ao banco"
+      description: ""
+      operationId: "readAllCliente"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Lista de todos os clientes do banco"
+        required: true
+        schema:
+          $ref: ""
+      responses:
+        200:
+          description: "Ok"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+  /WebAPI/api/clients/update:
+    put:
+      tags:
+      - "Clientes"
+      summary: "Atualiza um cliente do banco"
+      description: ""
+      operationId: "updateCliente"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Cliente que vai ser adicionado ao banco"
+        required: true
+        schema:
+          $ref: "#/definitions/Id"
+      responses:
+        200:
+          description: "Usuario atualizado"
+        201:
+          description: "Usuario criado"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+  /WebAPI/api/clients/delete/{id}:
+    delete:
+      tags:
+      - "Clientes"
+      summary: "Deletar um cliente do banco pelo id"
+      description: ""
+      operationId: "deleteCliente"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Cliente que vai ser deletado do banco"
+        required: true
+        schema:
+          $ref: "#/definitions/Id"
+      responses:
+        200:
+          description: "Usuario apagado"
+        400:
+          description: "Id invalido"
+        404:
+          description: "User not found"
+      security:
+      - petstore_auth:
+        - "write:pets"
+        - "read:pets"
+securityDefinitions:
+  petstore_auth:
+    type: "oauth2"
+    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:pets: "modify pets in your account"
+      read:pets: "read your pets"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  Create:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      nome:
+        type: "string"
+      email:
+        type: "string"
+      telefone:
+        type: "string"
+      cep:
+        type: "string"
+      rua:
+        type: "string"
+      numero:
+        type: "integer"
+        format: "int32"
+      cidade:
+        type: "string"
+      estado:
+        type: "string"  
+      rg:
+        type: "string"
+      cpf:
+        type: "string"
+    xml:
+      name: "Cliente"
+  Id:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
